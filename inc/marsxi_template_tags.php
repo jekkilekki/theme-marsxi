@@ -84,7 +84,7 @@ add_action( 'marsxi_child_footer', 'marsxi_footer_credits' );
 
 
 
-if ( ! function_exists( 'marsxi_post_nav' ) ) :
+if ( ! function_exists( 'marsxi_posts_nav' ) ) :
 /**
  * Display navigation to next/previous post when applicable.
  *
@@ -92,7 +92,7 @@ if ( ! function_exists( 'marsxi_post_nav' ) ) :
  * @link: http://www.measureddesigns.com/adding-previous-next-post-wordpress-post/
  * @link: http://wpsites.net/web-design/add-featured-images-to-previous-next-post-nav-links/
  */
-function marsxi_post_nav() {
+function marsxi_posts_nav() {
 	// Don't print empty markup if there's nowhere to navigate.
 	$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
 	$next     = get_adjacent_post( false, '', false );

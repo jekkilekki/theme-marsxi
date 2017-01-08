@@ -63,7 +63,20 @@ endif;
 				twentyseventeen_front_page_section( null, $i );
 			}
 
-	endif; // The if ( 0 !== twentyseventeen_panel_count() ) ends here. ?>
+                endif; // The if ( 0 !== twentyseventeen_panel_count() ) ends here. ?>
+            
+                <?php
+                if ( get_theme_mod( 'panel_last' ) != false ) {
+                        global $post;
+                        $post = get_post( get_theme_mod( 'panel_last' ) );
+                        setup_postdata( $post );
+                        //set_query_var( 'panel', $id );
+
+                        get_template_part( 'template-parts/page/content', 'front-page-panel-last' );
+
+                        wp_reset_postdata();
+                }
+                ?>
 
 	</main><!-- #main -->
 </div><!-- #primary -->

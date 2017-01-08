@@ -15,12 +15,6 @@ function marsxi_customize_register( $wp_customize ) {
      * Modify some values in the Customizer
      */
     $wp_customize->get_section( 'title_tagline' )->title        = __( 'Site Title / Logo', 'marsxi' );
-    $wp_customize->get_control( 'page_layout' )->choices        = array(
-        'one-column'    => __( 'One Column', 'marsxi' ),
-        'two-column'    => __( 'Two Column with full-size images', 'marsxi' ),
-        'animate'       => __( 'Two Column with slide-in images', 'marsxi' )
-    );
-    $wp_customize->get_setting( 'page_layout' )->sanitize_callback = 'marsxi_sanitize_page_layout';
     
     /**
      * Reorganize some things in the Customizer
@@ -105,6 +99,36 @@ function marsxi_customize_register( $wp_customize ) {
                             'one-column'    => __( 'One Column', 'marsxi' ),
                             'two-column'    => __( 'Two Column', 'marsxi' ),
                     ),
+                    'active_callback'   => 'marsxi_is_static_front_page',
+                    'priority'          => 8
+                ) );
+        
+        $wp_customize->add_setting( 'frontpage_full_main_image',
+                array(
+                    'default'           => true,
+                    'sanitize_callback' => 'marsxi_sanitize_checkbox',
+                ) );
+        
+        $wp_customize->add_control( 'frontpage_full_main_image',
+                array(
+                    'section'           => 'theme_options',
+                    'type'              => 'checkbox',
+                    'label'             => __( 'Show full size Front Page image?', 'marsxi' ),
+                    'active_callback'   => 'marsxi_is_static_front_page',
+                    'priority'          => 8
+                ) );
+        
+        $wp_customize->add_setting( 'frontpage_slide_panel_images',
+                array(
+                    'default'           => false,
+                    'sanitize_callback' => 'marsxi_sanitize_checkbox',
+                ) );
+        
+        $wp_customize->add_control( 'frontpage_slide_panel_images',
+                array(
+                    'section'           => 'theme_options',
+                    'type'              => 'checkbox',
+                    'label'             => __( 'Make Front Panel Images slide in?', 'marsxi' ),
                     'active_callback'   => 'marsxi_is_static_front_page',
                     'priority'          => 8
                 ) );
@@ -337,8 +361,8 @@ function marsxi_sanitize_top_menu_position( $input ) {
 function marsxi_sanitize_page_layout( $input ) {
     $valid = array(
             'one-column'    => __( 'One Column', 'marsxi' ),
-            'two-column'    => __( 'Two Column with full-size images', 'marsxi' ),
-            'animate'       => __( 'Two Column with slide-in images', 'marsxi' )
+            'two-column'    => __( 'Two Column', 'marsxi' ),
+            'slide-in'      => __( 'Front Page Panel images slide in', 'marsxi' )
     );
     
     if( array_key_exists( $input, $valid ) ) {
