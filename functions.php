@@ -57,10 +57,6 @@ add_action( 'wp_head', 'marsxi_customizer_css' );
  */
 function marsxi_scripts() {
     /*
-     * Add Font Awesome (4.7)
-     */
-    wp_enqueue_style( 'marsxi-font-awesome', get_stylesheet_directory_uri() . '/fonts/font-awesome.min.css' );
-    /*
      * Add Front Page Image Slider script IF it is the front page and slide-in images is selected in the Customizer
      */
     if ( is_front_page() && is_page() && get_theme_mod( 'frontpage_slide_panel_images', false ) ) {
