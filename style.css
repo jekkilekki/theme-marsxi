@@ -1,7 +1,7 @@
 /**
  * Theme Name:      MarsXI
  * Theme URI:       https://github.com/jekkilekki/theme-marsxi
- * Description:     Oblique Child Theme that includes specialized Customizer options for a unique Front Page design.
+ * Description:     Twenty Seventeen Child Theme that includes specialized Customizer options for a unique Front Page design.
  * Author:          Aaron Snowberger
  * Author URI:      http://aaronsnowberger.com
  * Template:        twentyseventeen
@@ -9,16 +9,15 @@
  * License:         GPLv2 or later
  * License URL:     http://www.gnu.org/licenses/gpl-2.0.html
  * Tags:            responsive-layout
- * Text Domain:     marsx
- * GitHub Theme URI:https://github.com/jekkilekki/theme-marsx
+ * Text Domain:     marsxi
+ * GitHub Theme URI:https://github.com/jekkilekki/theme-marsxi
  * GitHub Branch:   master
  */
 
 /**
- * Reset - to MarsX defaults (orange and Fira Sans + Play fonts)
+ * Reset - to MarsX defaults (orange and Fira Sans fonts)
  */
 body {
-    /*background-color: #282828;*/
     font-family: "Fira Sans", sans-serif;
 }
 @media screen and (min-width: 48em) {
@@ -30,26 +29,24 @@ body {
 }
 
 .highlight-text {
-    color: #f68b1f!important;
+    color: #f68b1f;
 }
 .highlight-line {
-    border-color: #f68b1f!important;
+    border-color: #f68b1f;
 }
 .highlight-bg {
-    background-color: #f68b1f!important;
+    background-color: #f68b1f;
 }
 
 .button,
 .link-more {
     margin: 1em 1em 1em 0;
     background-color: white;
-    /*border: 0;*/
     border: 1px solid #ddd;
     -webkit-border-radius: 2px;
     border-radius: 2px;
     -webkit-box-shadow: none;
     box-shadow: none;
-    /*color: #fff;*/
     cursor: pointer;
     display: inline-block;
     font-size: 14px;
@@ -62,6 +59,11 @@ body {
     text-transform: uppercase;
     -webkit-transition: background 0.2s;
     transition: background 0.2s;
+}
+.colors-dark .button,
+.colors-dark .link-more {
+    background: black;
+    border: 1px solid #222;
 }
 .button a,
 .link-more a {
@@ -78,8 +80,15 @@ button a {
     background: #222;
     border: 1px solid #222;
 }
+.colors-dark .button-inverse {
+    background: #f5f7f7;
+    border: 1px solid #f5f7f7;
+}
 .button-inverse a {
     color: white;
+}
+.colors-dark .button-inverse a {
+    color: black;
 }
 .button:hover,
 .link-more:hover {
@@ -90,6 +99,15 @@ button a {
 .link-more:hover a {
     color: white!important;
     box-shadow: none;
+}
+.colors-dark .button:hover,
+.colors-dark .link-more:hover {
+    background: #f5f7f7!important;
+    border-color: #f5f7f7!important;
+}
+.colors-dark .button:hover a,
+.colors-dark .link-more:hover a {
+    color: black!important;
 }
 /**
  * Custom gallery alignments ONLY for the first panel on the Front Page
@@ -160,6 +178,9 @@ button a {
     letter-spacing: 0.14em;
     text-transform: uppercase;
 }
+.colors-dark .site-headline-panel {
+    background: black;
+}
 .site-headline-panel .entry-header {
     float: left;
     width: 36%;
@@ -174,7 +195,7 @@ button a {
     margin-bottom: 0;
 }
 .panel-content.site-headline-panel .wrap {
-    padding: 4rem 3rem 3rem;
+    padding: 4rem 3rem;
 }
 .panel-one-column.site-headline-panel .wrap {
     max-width: 740px;
@@ -194,6 +215,9 @@ button a {
  */
 .slide-panel:not(first-child) {
     border-top: 1px solid #ddd;
+}
+.colors-dark .slide-panel:not(first-child) {
+    border-top: 1px solid black;
 }
 .slide-panel .entry-header {
     width: 58%!important;
@@ -249,6 +273,9 @@ article.page-two-column .entry-content {
     background: #f5f7f7;
     border-top: none!important;
 }
+.colors-dark .last-panel {
+    background: black;
+}
 .last-panel .entry-content a img {
     box-shadow: none;
     -webkit-box-shadow: none;
@@ -270,6 +297,8 @@ article.page-two-column .entry-content {
 .call-to-action-panel .entry-header {
     margin-top: -20em;
     margin-bottom: 10em!important;
+    float: none!important;
+    width: 100%!important;
 }
 .call-to-action,
 .call-to-action-buttons {
@@ -282,6 +311,8 @@ article.page-two-column .entry-content {
     letter-spacing: 0.05em;
     margin: 0.5em;
     text-transform: capitalize;
+    clip: auto!important;
+    position: relative!important;
 }
 
 /**

@@ -15,6 +15,7 @@ function marsxi_customize_register( $wp_customize ) {
      * Modify some values in the Customizer
      */
     $wp_customize->get_section( 'title_tagline' )->title        = __( 'Site Title / Logo', 'marsxi' );
+    $wp_customize->get_control( 'header_textcolor' )->description   = __( 'This also controls the color of your Call to Action headline.', 'marsxi' );
     
     /**
      * Reorganize some things in the Customizer
@@ -187,7 +188,7 @@ function marsxi_customize_register( $wp_customize ) {
         
         $wp_customize->add_control( 'cta_page_display',
                 array(
-                    'label'             => __( 'Call to Action Options', 'marsxi' ),
+                    'label'             => __( 'Call to Action', 'marsxi' ),
                     'description'       => __( 'Select a Page to display in the Call to Action section. (This will only display the Featured Image as a background and a button link to the page.)', 'marsxi' ),
                     'section'           => 'theme_options',
                     'type'              => 'dropdown-pages',
@@ -243,7 +244,7 @@ function marsxi_customize_register( $wp_customize ) {
         
         $wp_customize->add_control( 'cta_options',
                 array(
-                    'label'             => __( 'Call To Action Options', 'marsxi' ),
+                    'label'             => __( 'Call To Action Display Options', 'marsxi' ),
                     'section'           => 'theme_options',
                     'type'              => 'radio',
                     'description'       => __( 'Choose whether or not to have the Call To Action visible on all pages or just the front page.', 'marsxi' ),
@@ -298,7 +299,7 @@ function marsxi_customize_register( $wp_customize ) {
         
         $wp_customize->add_control( 'site_headline_options',
                 array(
-                    'label'             => __( 'Site Headline Options', 'marsxi' ),
+                    'label'             => __( 'Site Headline Display Options', 'marsxi' ),
                     'section'           => 'theme_options',
                     'type'              => 'radio',
                     'description'       => __( 'Choose whether or not to have the site headline visible on all pages or just the front page.', 'marsxi' ),
@@ -465,10 +466,10 @@ add_filter( 'twentyseventeen_custom_colors_saturation', 'marsxi_custom_colors_sa
 function marsxi_customize_preview_js() {
         
         /* Load Customizer functions from Parent Theme (Twenty Seventeen) */
-	wp_enqueue_script( 'marsxi_customizer', get_template_directory_uri() . '/assets/js/customize-preview.js', array( 'customize-preview' ), '20170108', true );
+	wp_enqueue_script( 'marsxi_customizer', get_stylesheet_directory_uri() . '/js/customize-preview.js', array( 'customize-preview' ), '20170108', true );
         
 }
-//add_action( 'customize_preview_init', 'marsxi_customize_preview_js' );
+add_action( 'customize_preview_init', 'marsxi_customize_preview_js' );
 
 function marsxi_customizer_control() {
     

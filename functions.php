@@ -32,6 +32,27 @@ register_default_headers( array(
 );
 
 /**
+ * This will output the custom WordPress settings to the live theme's WP head.
+ * 
+ * Used by hook: 'wp_head'
+ * 
+ * @see add_action('wp_head',$func)
+ * @since MarsXI 1.0
+ */
+function marsxi_customizer_css() {
+  ?>
+  <!--Customizer CSS--> 
+  <style type="text/css">
+       .highlight-text { color: <?php echo get_theme_mod( 'highlight_color', '#f68b1f' ); ?>; }
+       .highlight-line { border-color: <?php echo get_theme_mod( 'highlight_color', '#f68b1f' ); ?>; }
+       .highlight-bg { background-color: <?php echo get_theme_mod( 'highlight_color', '#f68b1f' ); ?>; }
+  </style> 
+  <!--/Customizer CSS-->
+  <?php
+}
+add_action( 'wp_head', 'marsxi_customizer_css' );
+
+/**
  * Enqueue MarsXI Scripts
  */
 function marsxi_scripts() {
