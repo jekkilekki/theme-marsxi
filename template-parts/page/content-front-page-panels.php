@@ -34,8 +34,7 @@ if ( get_the_ID() === (int) get_option( 'page_for_posts') ) {
 
 	<?php endif; ?>
 
-	<div class="panel-content <?php echo get_theme_mod( 'page_layout' ) == 'one-column' ||
-                                             get_theme_mod( 'frontpage_page_layout' ) == 'one-column' ? 'page-one-column' : ''; ?>">
+	<div class="panel-content <?php echo get_theme_mod( 'page_layout' ) == 'one-column' ? 'page-one-column' : ''; ?>">
 		<div class="wrap">
 			<header class="entry-header">
                                 
