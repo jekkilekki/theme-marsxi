@@ -465,7 +465,9 @@ add_filter( 'twentyseventeen_custom_colors_saturation', 'marsxi_custom_colors_sa
  */
 function marsxi_customize_preview_js() {
         
-        /* Load Customizer functions from Parent Theme (Twenty Seventeen) */
+        /* Remove Twenty Seventeen Customizer functions */
+        wp_dequeue_script( 'twentyseventeen-customize-preview' );
+        /* Load MarsXI Customizer functions instead */
 	wp_enqueue_script( 'marsxi_customizer', get_stylesheet_directory_uri() . '/js/customize-preview.js', array( 'customize-preview' ), '20170108', true );
         
 }
