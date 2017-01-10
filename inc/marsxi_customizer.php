@@ -156,7 +156,6 @@ function marsxi_customize_register( $wp_customize ) {
                 array(
                     'default'           => false,
                     'sanitize_callback' => 'absint',
-                    'transport'         => 'postMessage',
                 ) );
         
         $wp_customize->add_control( 'panel_last',
@@ -183,7 +182,6 @@ function marsxi_customize_register( $wp_customize ) {
                 array(
                     'default'           => false,
                     'sanitize_callback' => 'absint',
-                    'transport'         => 'postMessage',
                 ) );
         
         $wp_customize->add_control( 'cta_page_display',
