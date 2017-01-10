@@ -19,7 +19,8 @@ get_header(); ?>
  * Front Page Headline (Front Page ONLY)
  */
 if ( get_theme_mod( 'site_headline', '' ) != '' && get_theme_mod( 'site_headline_options', 'all-pages' ) == 'front-page' ) : ?>
-<div class="panel-content site-headline-panel <?php echo get_theme_mod( 'page_layout' ) == 'one-column' ? 'panel-one-column' : ''; ?>">
+<div class="panel-content site-headline-panel <?php echo get_theme_mod( 'page_layout' ) == 'one-column' || 
+                                                         get_theme_mod( 'frontpage_page_layout' ) == 'one-column' ? 'page-one-column' : ''; ?>">
     <div class="wrap"> 
         <header class="entry-header">
             <h2 class="entry-title"><?php echo get_theme_mod( 'site_headline', '' ); ?></h1>

@@ -34,7 +34,8 @@ if ( get_the_ID() === (int) get_option( 'page_for_posts') ) {
 
 	<?php endif; ?>
 
-	<div class="panel-content">
+	<div class="panel-content <?php echo get_theme_mod( 'page_layout' ) == 'one-column' ||
+                                             get_theme_mod( 'frontpage_page_layout' ) == 'one-column' ? 'page-one-column' : ''; ?>">
 		<div class="wrap">
 			<header class="entry-header">
                                 
@@ -104,7 +105,8 @@ if ( get_the_ID() === (int) get_option( 'page_for_posts') ) {
 
 		 		<?php if ( $recent_posts->have_posts() ) : ?>
 
-					<div class="recent-posts">
+					<div class="recent-posts <?php echo get_theme_mod( 'page_layout' ) == 'one-column' ||
+                                                                            get_theme_mod( 'frontpage_page_layout' ) == 'one-column' ? 'page-one-column' : ''; ?>">
 
 						<?php
 						while ( $recent_posts->have_posts() ) : $recent_posts->the_post();

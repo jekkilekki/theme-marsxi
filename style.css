@@ -27,6 +27,14 @@ body {
         margin-bottom: 2em;
     }
 }
+@media screen and (min-width: 48em) {
+    .twentyseventeen-front-page.has-header-image .custom-header-media, 
+    .twentyseventeen-front-page.has-header-video .custom-header-media, 
+    .home.blog.has-header-image .custom-header-media, 
+    .home.blog.has-header-video .custom-header-media {
+        height: calc( 100vh - 72px );
+    }
+}
 
 .highlight-text {
     color: #f68b1f;
@@ -162,52 +170,14 @@ button a {
 .top-menu-logo img {
     max-height: 100%!important;
 }
-
-/**
- * Site Headline Panel
- */
-.site-headline-panel {
-    background: #f5f7f7;
-    font-size: 1.5rem;
-}
-.site-headline-panel .entry-title {
-    color: #222;
-    font-size: 14px;
-    font-size: 0.875rem;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-}
-.colors-dark .site-headline-panel {
-    background: black;
-}
-.site-headline-panel .entry-header {
-    float: left;
-    width: 36%;
-}
-.site-headline-panel .entry-content {
-    margin-top: -0.5rem;
-    float: right;
-    width: 58%;
-}
-.home .site-headline-panel {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-.panel-content.site-headline-panel .wrap {
-    padding: 4rem 3rem;
-}
-.panel-one-column.site-headline-panel .wrap {
-    max-width: 740px;
-}
-.panel-one-column.site-headline-panel .entry-header, 
-.panel-one-column.site-headline-panel .entry-content {
-    float: none;
-    width: 100%;
-}
-.panel-one-column.site-headline-panel .entry-header {
-    padding-bottom: 0;
-    margin-bottom: 2em;
+@media screen and (max-width: 48em) {
+    .fixed-top-menu .site-header {
+        padding-top: 0;
+    }
+    .top-menu-logo img {
+        max-height: 90%!important;
+        padding-left: 1em;
+    }
 }
 
 /**
@@ -245,11 +215,60 @@ button a {
     to { transform: translateX( 0 ); }
 }
 
+/**
+ * Site Headline Panel
+ */
+.site-headline-panel {
+    background: #f5f7f7;
+    font-size: 1.5rem;
+}
+.site-headline-panel .entry-title {
+    color: #222;
+    font-size: 14px;
+    font-size: 0.875rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+.colors-dark .site-headline-panel {
+    background: black;
+}
+.site-headline-panel .entry-header {
+    float: left;
+    width: 36%;
+}
+.site-headline-panel .entry-content {
+    margin-top: -0.5rem;
+    float: right;
+    width: 58%;
+}
+.home .site-headline-panel {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.panel-content.site-headline-panel .wrap {
+    padding: 4rem 3rem;
+}
+.page-one-column.site-headline-panel .entry-header, 
+.page-one-column.site-headline-panel .entry-content,
+.slide-panel .page-one-column .entry-header,
+.slide-panel .page-one-column .entry-content {
+    float: none!important;
+    width: 100%!important;
+}
+.page-one-column.site-headline-panel .entry-header {
+    padding-bottom: 0;
+    margin-bottom: 2em;
+}
+
 /**지질탐사 > 지하공간설계 > 지하공간건설 > 관리운영컨설팅
  * Front Page Page Layout
  */
 article.page-one-column .wrap {
     max-width: 920px!important;
+}
+.panel-one-column.site-headline-panel .wrap {
+    max-width: 740px;
 }
 article.page-one-column .entry-header {
     float: none!important;
@@ -279,6 +298,24 @@ article.page-two-column .entry-content {
 .last-panel .entry-content a img {
     box-shadow: none;
     -webkit-box-shadow: none;
+}
+
+@media screen and (max-width: 48em) {
+    .slide-panel .entry-header,
+    .slide-panel .entry-content,
+    .first-panel .entry-header,
+    .first-panel .entry-content,
+    .last-panel .entry-header,
+    .last-panel .entry-content,
+    .site-headline-panel .entry-header,
+    .site-headline-panel .entry-content {
+        float: none!important;
+        width: 100%!important;
+    }
+    .site-headline-panel .entry-header {
+        padding-bottom: 0;
+        margin-bottom: 1em;
+    }
 }
 
 /**

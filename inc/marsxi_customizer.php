@@ -95,7 +95,7 @@ function marsxi_customize_register( $wp_customize ) {
                     'type'              => 'radio',
                     'description'       => __( 'Keep the site\'s page layout (as above) or assign a different one separately just for the front page. (Scroll up to view.)', 'marsxi' ),
                     'choices'           => array(
-                            'page-layout'   => __( 'Page Layout (same as above)', 'marsxi' ),
+                            // 'page-layout'   => __( 'Page Layout (same as above)', 'marsxi' ),
                             'one-column'    => __( 'One Column', 'marsxi' ),
                             'two-column'    => __( 'Two Column', 'marsxi' ),
                     ),
@@ -410,7 +410,7 @@ function marsxi_sanitize_page_layout( $input ) {
  */
 function marsxi_sanitize_front_page_layout( $input ) {
     $valid = array(
-            'page-layout'   => __( 'Page Layout (same as above)', 'marsxi' ),
+            // 'page-layout'   => __( 'Page Layout (same as above)', 'marsxi' ),
             'one-column'    => __( 'One Column', 'marsxi' ),
             'two-column'    => __( 'Two Column', 'marsxi' ),
     );

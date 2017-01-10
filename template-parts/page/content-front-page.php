@@ -17,7 +17,7 @@ if( get_theme_mod( 'frontpage_page_layout' ) == 'one-column' ) {
     $frontpage_layout = '';
 }
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'twentyseventeen-panel ' . $frontpage_layout ); ?> >
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'twentyseventeen-panel first-panel ' . $frontpage_layout ); ?> >
 
 	<?php if ( has_post_thumbnail() && get_theme_mod( 'frontpage_full_main_image', true ) ) :
 		$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'twentyseventeen-featured-image' );

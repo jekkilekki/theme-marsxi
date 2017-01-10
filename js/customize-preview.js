@@ -132,9 +132,24 @@
 	wp.customize( 'page_layout', function( value ) {
 		value.bind( function( to ) {
 			if ( 'one-column' === to ) {
-				$( 'body' ).addClass( 'page-one-column' ).removeClass( 'page-two-column' );
+				$( 'body, .panel-content' ).addClass( 'page-one-column' ).removeClass( 'page-two-column' );
 			} else {
 				$( 'body' ).removeClass( 'page-one-column' ).addClass( 'page-two-column' );
+                                $( '.panel-content' ).removeClass( 'page-one-column' );
+                                $( '.first-panel, .last-panel' ).addClass( 'page-one-column' );
+			}
+		} );
+	} );
+        
+        // Front Page only Page layouts.
+	wp.customize( 'frontpage_page_layout', function( value ) {
+		value.bind( function( to ) {
+			if ( 'one-column' === to ) {
+                                $( '.first-panel, .last-panel' ).addClass( 'page-one-column' ).removeClass( 'page-two-column' );
+			} else {
+				$( 'body.twentyseventeen-front-page' ).removeClass( 'page-one-column' ).addClass( 'page-two-column' );
+                                $( '.twentyseventeen-front-page .panel-content' ).removeClass( 'page-one-column' );
+                                $( '.twentyseventeen-front-page .first-panel, .twentyseventeen-front-page .last-panel' ).addClass( 'page-one-column' );
 			}
 		} );
 	} );

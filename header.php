@@ -52,7 +52,7 @@
          * ALL Page Headline -> Front Page ONLY option in front-page.php
          */
         if ( get_theme_mod( 'site_headline', '' ) != '' && get_theme_mod( 'site_headline_options', 'all-pages' ) != 'front-page' ) : ?>
-        <div class="panel-content site-headline-panel <?php echo get_theme_mod( 'page_layout' ) == 'one-column' ? 'panel-one-column' : ''; ?>">
+        <div class="panel-content site-headline-panel <?php echo get_theme_mod( 'page_layout' ) == 'one-column' ? 'page-one-column' : ''; ?>">
             <div class="wrap">
                 <header class="entry-header">
                     <h2 class="entry-title"><?php echo get_theme_mod( 'site_headline', '' ); ?></h1>
