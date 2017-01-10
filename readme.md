@@ -2,7 +2,7 @@
 
 `Version 1.0.0`
 
-
+![screenshot-big](https://cloud.githubusercontent.com/assets/6644259/21796592/195a7a5a-d74d-11e6-9e05-f5fdeb1eb75a.png)
 
 A child theme of the [Twenty Seventeen WordPress Theme](https://wordpress.org/themes/twentyseventeen/). Built specifically for a South Korean startup that is working in the Underground Construction space. Second rendition of a website theme for the company. The first is a Child Theme of Oblique.
 
@@ -28,7 +28,7 @@ Still working out the Issues with Front Page independent layouts - in the Custom
 
 ### Long Screenshot
 
-
+![screenshot-long](https://cloud.githubusercontent.com/assets/6644259/21796597/20deaaf8-d74d-11e6-84b9-2616f82010be.png)
 
 ### Upcoming
 
