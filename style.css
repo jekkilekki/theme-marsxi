@@ -21,6 +21,85 @@ body {
     /*background-color: #282828;*/
     font-family: "Fira Sans", sans-serif;
 }
+@media screen and (min-width: 48em) {
+    .page.page-one-column .entry-header, 
+    .twentyseventeen-front-page.page-one-column .entry-header, 
+    .archive.page-one-column:not(.has-sidebar) .page-header {
+        margin-bottom: 2em;
+    }
+}
+
+.highlight-text {
+    color: #f68b1f!important;
+}
+.highlight-line {
+    border-color: #f68b1f!important;
+}
+.highlight-bg {
+    background-color: #f68b1f!important;
+}
+
+.button,
+.link-more {
+    margin: 1em 1em 1em 0;
+    background-color: white;
+    /*border: 0;*/
+    border: 1px solid #ddd;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    /*color: #fff;*/
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-size: 0.875rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0.14em;
+    padding: 1.3em 2em;
+    text-shadow: none;
+    text-transform: uppercase;
+    -webkit-transition: background 0.2s;
+    transition: background 0.2s;
+}
+.button a,
+.link-more a {
+    box-shadow: none;
+    text-decoration: none;
+    /*text-transform: uppercase;*/
+    color: #767676;
+    /*letter-spacing: 0.14em;*/
+}
+button a {
+    color: white!important;
+}
+.button-inverse {
+    background: #222;
+    border: 1px solid #222;
+}
+.button-inverse a {
+    color: white;
+}
+.button:hover,
+.link-more:hover {
+    background: #222!important;
+    border-color: #222!important;
+}
+.button:hover a,
+.link-more:hover a {
+    color: white!important;
+    box-shadow: none;
+}
+/**
+ * Custom gallery alignments ONLY for the first panel on the Front Page
+ */
+.twentyseventeen-front-page .site-main article:first-child .gallery-item {
+    vertical-align: baseline;
+}
+.twentyseventeen-front-page .site-main article:first-child .gallery-caption {
+    text-align: center;
+}
 
 /**
  * Fixed Top Menu Styles
@@ -72,16 +151,42 @@ body {
 .site-headline-panel {
     background: #f5f7f7;
     font-size: 1.5rem;
-    margin-bottom: 3em;
-    margin-top: -3.7em;
+}
+.site-headline-panel .entry-title {
+    color: #222;
+    font-size: 14px;
+    font-size: 0.875rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+.site-headline-panel .entry-header {
+    float: left;
+    width: 36%;
+}
+.site-headline-panel .entry-content {
+    margin-top: -0.5rem;
+    float: right;
+    width: 58%;
 }
 .home .site-headline-panel {
     margin-top: 0;
     margin-bottom: 0;
 }
 .panel-content.site-headline-panel .wrap {
-    padding-top: 3em;
-    padding-bottom: 2em;
+    padding: 4rem 3rem 3rem;
+}
+.panel-one-column.site-headline-panel .wrap {
+    max-width: 740px;
+}
+.panel-one-column.site-headline-panel .entry-header, 
+.panel-one-column.site-headline-panel .entry-content {
+    float: none;
+    width: 100%;
+}
+.panel-one-column.site-headline-panel .entry-header {
+    padding-bottom: 0;
+    margin-bottom: 2em;
 }
 
 /**
@@ -116,6 +221,27 @@ body {
     to { transform: translateX( 0 ); }
 }
 
+/**지질탐사 > 지하공간설계 > 지하공간건설 > 관리운영컨설팅
+ * Front Page Page Layout
+ */
+article.page-one-column .wrap {
+    max-width: 920px!important;
+}
+article.page-one-column .entry-header {
+    float: none!important;
+    width: 100%!important;
+}
+article.page-one-column .entry-content {
+    float: none!important;
+    width: 100%!important;
+}
+article.page-two-column .entry-header {
+    
+}
+article.page-two-column .entry-content {
+    
+}
+
 /**
  * Front Page Last Panel
  */
@@ -123,10 +249,44 @@ body {
     background: #f5f7f7;
     border-top: none!important;
 }
+.last-panel .entry-content a img {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
 
 /**
  * Paging Navigation
  */
 .page-numbers {
     display: inline-block;
+}
+
+/**
+ * Call to Action Buttons
+ */
+.panel-image.panel-image-small {
+    height: 30em;
+}
+.call-to-action-panel .entry-header {
+    margin-top: -20em;
+    margin-bottom: 10em!important;
+}
+.call-to-action,
+.call-to-action-buttons {
+    margin: 0 auto;
+    text-align: center;
+}
+.call-to-action {
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: 0.05em;
+    margin: 0.5em;
+    text-transform: capitalize;
+}
+
+/**
+ * Site Info
+ */
+.site-info {
+    font-size: 0.75rem;
 }

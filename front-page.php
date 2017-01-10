@@ -19,12 +19,14 @@ get_header(); ?>
  * Front Page Headline (Front Page ONLY)
  */
 if ( get_theme_mod( 'site_headline', '' ) != '' && get_theme_mod( 'site_headline_options', 'all-pages' ) == 'front-page' ) : ?>
-<div class="panel-content site-headline-panel">
-    <div class="wrap">
+<div class="panel-content site-headline-panel <?php echo get_theme_mod( 'page_layout' ) == 'one-column' ? 'panel-one-column' : ''; ?>">
+    <div class="wrap"> 
         <header class="entry-header">
             <h2 class="entry-title"><?php echo get_theme_mod( 'site_headline', '' ); ?></h1>
         </header>
-        <?php echo get_theme_mod( 'site_headline_description', '' ); ?>
+        <div class="entry-content">
+            <?php echo get_theme_mod( 'site_headline_description', '' ); ?>
+        </div>
     </div>
 </div>
 <?php 
@@ -34,7 +36,7 @@ endif;
 <div id="primary" class="content-area">
 	<main id="main" class="site-main" role="main">
 
-		<?php // Show the selected frontpage content.
+		<?php // Show the selected Frontpage Content.
 		if ( have_posts() ) :
 			while ( have_posts() ) : the_post();
 				get_template_part( 'template-parts/page/content', 'front-page' );
@@ -66,6 +68,14 @@ endif;
                 endif; // The if ( 0 !== twentyseventeen_panel_count() ) ends here. ?>
             
                 <?php
+                /**
+                 * Last Panel Section (light gray background)
+                 * 
+                 * The last panel on the page (if set) follows the style of Frontpage Content (above)
+                 * but has a light gray background
+                 * 
+                 * @since MarsXI 1.0
+                 */
                 if ( get_theme_mod( 'panel_last' ) != false ) {
                         global $post;
                         $post = get_post( get_theme_mod( 'panel_last' ) );
@@ -75,6 +85,26 @@ endif;
                         get_template_part( 'template-parts/page/content', 'front-page-panel-last' );
 
                         wp_reset_postdata();
+                }
+                ?>
+            
+                <?php
+                /**
+                 * Call to Action Section
+                 * 
+                 * Description
+                 * 
+                 * @since MarsXI 1.0
+                 */
+                if( get_theme_mod( 'cta_page_display' ) != false && get_theme_mod( 'cta_options' ) != 'all-pages' ) {
+                        global $post;
+                        $post = get_post( get_theme_mod( 'cta_page_display' ) );
+                        setup_postdata( $post );
+                        //set_query_var( 'panel', ++$id );
+
+                        get_template_part( 'template-parts/page/content', 'front-page-action' );
+
+                        wp_reset_postdata();       
                 }
                 ?>
 

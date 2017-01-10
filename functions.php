@@ -23,9 +23,9 @@ add_action( 'after_setup_theme', 'marsxi_setup_theme' );
  * Register default header image
  */
 register_default_headers( array(
-	'marsi' => array(
-		'url'           => '%2$s/images/marsx-header.jpg',
-		'thumbnail_url' => '%2$s/images/marsx-thumbnail.jpg',
+	'marsxi' => array(
+		'url'           => '%2$s/images/marsxi-header.jpg',
+		'thumbnail_url' => '%2$s/images/marsxi-thumbnail.jpg',
 		'description'   => __( 'Mars', 'marsx' )
                 )
 	)
@@ -49,11 +49,6 @@ function marsxi_scripts() {
 add_action( 'wp_enqueue_scripts', 'marsxi_scripts' );
 
 /*
- * Load MarsXI_Misc_Control class
- */
-require get_stylesheet_directory() . '/inc/MarsXI_Misc_Control.class.php';
-
-/*
  * Load MarsXI Customizer
  */
 require get_stylesheet_directory() . '/inc/marsxi_customizer.php';
@@ -62,8 +57,3 @@ require get_stylesheet_directory() . '/inc/marsxi_customizer.php';
  * Load MarsXI Template Tags
  */
 require get_stylesheet_directory() . '/inc/marsxi_template_tags.php';
-
-/**
- * Allow some tags on excerpts.
- */
-require_once get_stylesheet_directory().'/inc/marsxi_excerpts.php';

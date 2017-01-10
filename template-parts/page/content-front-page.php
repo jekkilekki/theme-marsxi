@@ -8,8 +8,16 @@
  * @version 1.0
  */
 
+
+if( get_theme_mod( 'frontpage_page_layout' ) == 'one-column' ) {
+    $frontpage_layout = 'page-one-column';
+} else if ( get_theme_mod( 'frontpage_page_layout' ) === 'two-column' ) {
+    $frontpage_layout = 'page-two-column';
+} else {
+    $frontpage_layout = '';
+}
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'twentyseventeen-panel ' ); ?> >
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'twentyseventeen-panel ' . $frontpage_layout ); ?> >
 
 	<?php if ( has_post_thumbnail() && get_theme_mod( 'frontpage_full_main_image', true ) ) :
 		$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'twentyseventeen-featured-image' );
@@ -30,12 +38,17 @@
 
 	<div class="panel-content">
 		<div class="wrap">
-			<header class="entry-header">
-				<?php the_title( '<h2 class="entry-title">', '</h2>' ); ?>
+                    
+                        <?php if ( get_theme_mod( 'frontpage_show_title', false ) ) : ?>
+                    
+                                <header class="entry-header">
+                                        <?php the_title( '<h2 class="entry-title">', '</h2>' ); ?>
 
-				<?php twentyseventeen_edit_link( get_the_ID() ); ?>
+                                        <?php twentyseventeen_edit_link( get_the_ID() ); ?>
 
-			</header><!-- .entry-header -->
+                                </header><!-- .entry-header -->
+                                
+                        <?php endif; ?>
 
 			<div class="entry-content">
 				<?php
@@ -46,6 +59,14 @@
 					) );
 				?>
 			</div><!-- .entry-content -->
+                        
+                        <?php if ( ! get_theme_mod( 'frontpage_show_title', false ) ) : ?> 
+                        
+                                <footer>
+                                        <?php twentyseventeen_edit_link( get_the_ID() ); ?>
+                                </footer>
+                        
+                        <?php endif; ?>
 
 		</div><!-- .wrap -->
 	</div><!-- .panel-content -->

@@ -36,7 +36,7 @@ function marsxi_customize_register( $wp_customize ) {
          */
         // Highlight Color Setting
         $wp_customize->add_setting( 'highlight_color', array(
-            'default'           => '#f68b1f', // steelblue
+            'default'           => '#f68b1f', // marsx orange
             'type'              => 'theme_mod',
             'sanitize_callback' => 'sanitize_hex_color',
             'transport'         => 'postMessage'
@@ -61,7 +61,6 @@ function marsxi_customize_register( $wp_customize ) {
                 array(
                     'default'           => 'header',
                     'sanitize_callback' => 'marsxi_sanitize_logo_position_options',
-                    'transport'         => 'postMessage',
                 ) );
         
         $wp_customize->add_control( 'logo_position_options',
@@ -105,7 +104,7 @@ function marsxi_customize_register( $wp_customize ) {
         
         $wp_customize->add_setting( 'frontpage_full_main_image',
                 array(
-                    'default'           => true,
+                    'default'           => false,
                     'sanitize_callback' => 'marsxi_sanitize_checkbox',
                 ) );
         
@@ -113,9 +112,9 @@ function marsxi_customize_register( $wp_customize ) {
                 array(
                     'section'           => 'theme_options',
                     'type'              => 'checkbox',
-                    'label'             => __( 'Show full size Front Page image?', 'marsxi' ),
+                    'label'             => __( 'Show Front Featured Image?', 'marsxi' ),
                     'active_callback'   => 'marsxi_is_static_front_page',
-                    'priority'          => 8
+                    'priority'          => 8,
                 ) );
         
         $wp_customize->add_setting( 'frontpage_slide_panel_images',
@@ -130,7 +129,22 @@ function marsxi_customize_register( $wp_customize ) {
                     'type'              => 'checkbox',
                     'label'             => __( 'Make Front Panel Images slide in?', 'marsxi' ),
                     'active_callback'   => 'marsxi_is_static_front_page',
-                    'priority'          => 8
+                    'priority'          => 8,
+                ) );
+        
+        $wp_customize->add_setting( 'frontpage_show_title',
+                array(
+                    'default'           => false,
+                    'sanitize_callback' => 'marsxi_sanitize_checkbox',
+                ) );
+        
+        $wp_customize->add_control( 'frontpage_show_title',
+                array(
+                    'section'           => 'theme_options',
+                    'type'              => 'checkbox',
+                    'label'             => __( 'Show Front First/Last Section title?', 'marsxi' ),
+                    'active_callback'   => 'marsxi_is_static_front_page',
+                    'priority'          => 8,
                 ) );
         
         
@@ -162,7 +176,7 @@ function marsxi_customize_register( $wp_customize ) {
                 ) );
         
         /**
-         * Add a Front Page Call To Action Area
+         * Call To Action
          */
         $wp_customize->add_setting( 'cta_page_display',
                 array(
@@ -173,16 +187,15 @@ function marsxi_customize_register( $wp_customize ) {
         
         $wp_customize->add_control( 'cta_page_display',
                 array(
-                    'label'             => __( 'Front Page Call to Action', 'marsxi' ),
-                    'description'       => __( 'Select a Page to display in the Call to Action section. (This may be a good place for a map to your location or contact form.)', 'marsxi' ),
+                    'label'             => __( 'Call to Action Options', 'marsxi' ),
+                    'description'       => __( 'Select a Page to display in the Call to Action section. (This will only display the Featured Image as a background and a button link to the page.)', 'marsxi' ),
                     'section'           => 'theme_options',
                     'type'              => 'dropdown-pages',
-                    'active_callback'   => 'marsxi_is_static_front_page'
                 ) );
         
         $wp_customize->add_setting( 'cta_headline',
                 array(
-                    'default'           => __( 'Change the world with us!', 'marsxi' ),
+                    'default'           => __( 'Call to Action', 'marsxi' ),
                     'sanitize_callback' => 'marsxi_sanitize_text',
                 ) );
         
@@ -195,7 +208,7 @@ function marsxi_customize_register( $wp_customize ) {
         
         $wp_customize->add_setting( 'cta_button',
                 array(
-                    'default'           => __( 'Join!', 'marsxi' ),
+                    'default'           => __( 'Button', 'marsxi' ),
                     'sanitize_callback' => 'marsxi_sanitize_text',
                 ) );
         
@@ -217,6 +230,27 @@ function marsxi_customize_register( $wp_customize ) {
                     'type'              => 'dropdown-pages',
                     'section'           => 'theme_options',
                     'description'       => __( 'Select the Page for the Call to Action Button to link to.', 'marsxi' ),
+                ) );
+        
+        /**
+         * Call To Action Options
+         */
+        $wp_customize->add_setting( 'cta_options',
+                array(
+                    'default'           => 'all-pages',
+                    'sanitize_callback' => 'marsxi_sanitize_site_headline_options',
+                ) );
+        
+        $wp_customize->add_control( 'cta_options',
+                array(
+                    'label'             => __( 'Call To Action Options', 'marsxi' ),
+                    'section'           => 'theme_options',
+                    'type'              => 'radio',
+                    'description'       => __( 'Choose whether or not to have the Call To Action visible on all pages or just the front page.', 'marsxi' ),
+                    'choices'           => array(
+                            'all-pages'     => __( 'All Pages', 'marsxi' ),
+                            'front-page'    => __( 'Only Front Page', 'marsxi' )
+                    ),
                 ) );
 
     
@@ -260,7 +294,6 @@ function marsxi_customize_register( $wp_customize ) {
                 array(
                     'default'           => 'all-pages',
                     'sanitize_callback' => 'marsxi_sanitize_site_headline_options',
-                    'transport'         => 'postMessage',
                 ) );
         
         $wp_customize->add_control( 'site_headline_options',
@@ -284,7 +317,6 @@ function marsxi_customize_register( $wp_customize ) {
                 array( 
                     'default'           => 'below',
                     'sanitize_callback' => 'marsxi_sanitize_top_menu_position',
-                    'transport'         => 'postMessage',
                 ) );
         
         $wp_customize->add_control( 'top_menu_position',

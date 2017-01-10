@@ -1,6 +1,6 @@
 <?php
 /**
- * Template part for displaying pages on front page
+ * Template part for displaying pages on the Front Page
  *
  * @package WordPress
  * @subpackage MarsXI
@@ -9,11 +9,17 @@
  */
 
 global $twentyseventeencounter;
-$slidepanel = get_theme_mod( 'frontpage_slide_panel_images', false ) ? 'slide-panel' : '';
-
+// Check for blog page (recent-posts-panel) FIRST, don't assign 'slide-panel' class if it exists
+if ( get_the_ID() === (int) get_option( 'page_for_posts') ) {
+    $extra_panel_class = 'recent-posts-panel';
+} else if ( get_theme_mod( 'frontpage_slide_panel_images', false ) ) {
+    $extra_panel_class = 'slide-panel';
+} else {
+    $extra_panel_class = '';
+}
 ?>
 
-<article id="panel<?php echo $twentyseventeencounter; ?>" <?php post_class( 'twentyseventeen-panel ' . $slidepanel ); ?> >
+<article id="panel-action" <?php post_class( 'twentyseventeen-panel ' . $extra_panel_class . ' ' ); ?> >
 
 	<?php if ( has_post_thumbnail() && ! get_theme_mod( 'frontpage_slide_panel_images', false ) ) :
 		$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'twentyseventeen-featured-image' );
@@ -65,17 +71,22 @@ $slidepanel = get_theme_mod( 'frontpage_slide_panel_images', false ) ? 'slide-pa
 					) );
 				?>
                             
-                            <div class="continue-reading">
-                                <a href="<?php echo esc_url( get_permalink() ); ?>" rel="bookmark">
-                                    <?php
-                                        printf(
-                                                    /* translators: %s: Name of current post. */
-                                                    wp_kses( __( 'Learn More … %s', 'jkl' ), array( 'span' => array( 'class' => array() ) ) ),
-                                                    the_title( '<span class="screen-reader-text">"', '"</span>', false )
-                                            );
-                                    ?>
-                                </a>
-                            </div><!-- .continue-reading -->
+                                <?php if ( get_the_ID() !== (int) get_option( 'page_for_posts' ) ) : ?>
+                            
+                                        <div class="continue-reading button">
+                                            <a href="<?php echo esc_url( get_permalink() ); ?>" rel="bookmark">
+                                                <?php
+                                                    printf(
+                                                                /* translators: %s: Name of current post. */
+                                                                wp_kses( __( 'Learn More … %s', 'jkl' ), array( 'span' => array( 'class' => array() ) ) ),
+                                                                the_title( '<span class="screen-reader-text">"', '"</span>', false )
+                                                        );
+                                                ?>
+                                            </a>
+                                        </div><!-- .continue-reading -->
+                                        
+                                <?php endif; ?>
+                                        
 			</div><!-- .entry-content -->
 
 			<?php

@@ -48,6 +48,23 @@
 	</header><!-- #masthead -->
 
 	<?php
+        /**
+         * ALL Page Headline -> Front Page ONLY option in front-page.php
+         */
+        if ( get_theme_mod( 'site_headline', '' ) != '' && get_theme_mod( 'site_headline_options', 'all-pages' ) != 'front-page' ) : ?>
+        <div class="panel-content site-headline-panel <?php echo get_theme_mod( 'page_layout' ) == 'one-column' ? 'panel-one-column' : ''; ?>">
+            <div class="wrap">
+                <header class="entry-header">
+                    <h2 class="entry-title"><?php echo get_theme_mod( 'site_headline', '' ); ?></h1>
+                </header>
+                <div class="entry-content">
+                    <?php echo get_theme_mod( 'site_headline_description', '' ); ?>
+                </div>
+            </div>
+        </div>
+        <?php 
+        endif; 
+        
 	// If a regular post or page, and not the front page, show the featured image.
 	if ( has_post_thumbnail() && ( is_single() || ( is_page() && ! twentyseventeen_is_frontpage() ) ) ) :
 		echo '<div class="single-featured-image-header">';
@@ -58,19 +75,5 @@
 
 	<div class="site-content-contain">
 		<div id="content" class="site-content">
-                    <?php 
-                    /**
-                     * Front Page Headline (ALL pages) -> Front Page ONLY option in front-page.php
-                     */
-                    if ( get_theme_mod( 'site_headline', '' ) != '' && get_theme_mod( 'site_headline_options', 'all-pages' ) != 'front-page' ) : ?>
-                    <div class="panel-content site-headline-panel">
-                        <div class="wrap">
-                            <header class="entry-header">
-                                <h2 class="entry-title"><?php echo get_theme_mod( 'site_headline', '' ); ?></h1>
-                            </header>
-                            <?php echo get_theme_mod( 'site_headline_description', '' ); ?>
-                        </div>
-                    </div>
-                    <?php 
-                    endif; 
+                    
                     
