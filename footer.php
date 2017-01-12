@@ -34,12 +34,16 @@
                         wp_reset_postdata();       
                 }
                 ?>
+                
+                <div class="site-footer footer-widgets">
+                        <div class="wrap">
+                                <?php get_template_part( 'template-parts/footer/footer', 'widgets' ); ?>
+                        </div>
+                </div>
 
 		<footer id="colophon" class="site-footer" role="contentinfo">
 			<div class="wrap">
-				<?php
-				get_template_part( 'template-parts/footer/footer', 'widgets' );
-
+                                <?php
 				if ( has_nav_menu( 'social' ) ) : ?>
 					<nav class="social-navigation" role="navigation" aria-label="<?php _e( 'Footer Social Links Menu', 'twentyseventeen' ); ?>">
 						<?php
@@ -58,6 +62,16 @@
 				?>
 			</div><!-- .wrap -->
 		</footer><!-- #colophon -->
+                
+                <?php if ( get_theme_mod( 'show_footer_credits', true ) != false ) { ?>
+                
+                        <div class="theme-info">
+                                <a href="<?php echo esc_url( __( 'https://wordpress.org/', 'marsxi' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'marsxi' ), 'WordPress' ); ?></a>
+                                <br>Twenty Seventeen Child Theme <a href="<?php echo esc_url( __( 'http://aaronsnowberger.com/', 'marsxi' ) ); ?>"><?php printf( __( '%s by %s', 'marsxi' ), 'MarsXI', 'Aaron Snowberger' ); ?></a>
+                        </div>
+                
+                <?php } ?>
+                
 	</div><!-- .site-content-contain -->
 </div><!-- #page -->
 <?php wp_footer(); ?>

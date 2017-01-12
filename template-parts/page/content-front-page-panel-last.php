@@ -8,14 +8,17 @@
  * @version 1.0
  */
 
-
-if( get_theme_mod( 'frontpage_page_layout' ) == 'one-column' ) {
-    $frontpage_layout = 'page-one-column';
-} else if ( get_theme_mod( 'frontpage_page_layout' ) === 'two-column' ) {
-    $frontpage_layout = 'page-two-column';
-} else {
+/**
+ * Front Page Page Layout
+ * @deprecated 1.0.1 Possibly to revisit later
+ */
+//if( get_theme_mod( 'frontpage_page_layout' ) == 'one-column' ) {
+//    $frontpage_layout = 'page-one-column';
+//} else if ( get_theme_mod( 'frontpage_page_layout' ) === 'two-column' ) {
+//    $frontpage_layout = 'page-two-column';
+//} else {
     $frontpage_layout = '';
-}
+//}
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'twentyseventeen-panel last-panel ' . $frontpage_layout . ' ' ); ?> >
 

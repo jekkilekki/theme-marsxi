@@ -8,14 +8,17 @@
  * @version 1.0
  */
 
-
-if( get_theme_mod( 'frontpage_page_layout' ) == 'one-column' ) {
-    $frontpage_layout = 'page-one-column';
-} else if ( get_theme_mod( 'frontpage_page_layout' ) === 'two-column' ) {
-    $frontpage_layout = 'page-two-column';
-} else {
+/**
+ * Front Page Page Layout
+ * @deprecated 1.0.1 Possibly to revisit later
+ */
+//if( get_theme_mod( 'frontpage_page_layout' ) == 'one-column' ) {
+//    $frontpage_layout = 'page-one-column';
+//} else if ( get_theme_mod( 'frontpage_page_layout' ) === 'two-column' ) {
+//    $frontpage_layout = 'page-two-column';
+//} else {
     $frontpage_layout = '';
-}
+//}
 ?>
 
 <article id="panel-action" <?php post_class( 'twentyseventeen-panel ' . $frontpage_layout . ' ' ); ?> >
@@ -35,7 +38,7 @@ if( get_theme_mod( 'frontpage_page_layout' ) == 'one-column' ) {
 
 	<div class="panel-content call-to-action-panel">
             
-            <header class="entry-header">
+                <header class="entry-header">
                                 
                                 <?php 
                                 if ( get_theme_mod( 'cta_headline', '' ) != '' ) : 
@@ -77,7 +80,7 @@ if( get_theme_mod( 'frontpage_page_layout' ) == 'one-column' ) {
                                 
                                 ?>
 
-			</header><!-- .entry-header -->
+                </header><!-- .entry-header -->
             
 	</div><!-- .panel-content -->
 

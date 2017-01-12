@@ -13,19 +13,13 @@ global $twentyseventeencounter;
 if ( get_the_ID() === (int) get_option( 'page_for_posts') ) {
     $extra_panel_class = 'recent-posts-panel';
 } else if ( get_theme_mod( 'frontpage_slide_panel_images', false ) ) {
-    if( get_theme_mod( 'frontpage_slide_images_one_column', false ) ) {
-        $extra_panel_class = 'slide-panel page-one-column';
-    } else {
-        $extra_panel_class = 'slide-panel';
-    }
-} else if ( get_theme_mod( 'page_layout' ) == 'one-column' ) {
-    $extra_panel_class = 'page-one-column';
+    $extra_panel_class = 'slide-panel';
 } else {
     $extra_panel_class = '';
 }
 ?>
 
-<article id="panel<?php echo $twentyseventeencounter; ?>" <?php post_class( 'twentyseventeen-panel ' . $extra_panel_class . ' ' ); ?> >
+<article id="panel-featured" <?php post_class( 'twentyseventeen-panel ' . $extra_panel_class . ' ' ); ?> >
 
 	<?php if ( has_post_thumbnail() && ! get_theme_mod( 'frontpage_slide_panel_images', false ) ) :
 		$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'twentyseventeen-featured-image' );
@@ -40,7 +34,7 @@ if ( get_the_ID() === (int) get_option( 'page_for_posts') ) {
 
 	<?php endif; ?>
 
-	<div class="panel-content">
+	<div class="panel-content <?php echo get_theme_mod( 'page_layout' ) == 'one-column' ? 'page-one-column' : ''; ?>">
 		<div class="wrap">
 			<header class="entry-header">
                                 

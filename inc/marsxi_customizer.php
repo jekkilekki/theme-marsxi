@@ -14,19 +14,24 @@ function marsxi_customize_register( $wp_customize ) {
     /**
      * Modify some values in the Customizer
      */
-    $wp_customize->get_section( 'title_tagline' )->title        = __( 'Site Title / Logo', 'marsxi' );
+    $wp_customize->get_section( 'title_tagline' )->title            = __( 'Site Title / Logo', 'marsxi' );
+    $wp_customize->get_section( 'static_front_page' )->title        = __( 'Static Front Page Options', 'marsxi' );
     $wp_customize->get_control( 'header_textcolor' )->description   = __( 'This also controls the color of your Call to Action headline.', 'marsxi' );
+    $wp_customize->get_control( 'page_on_front' )->label            = __( 'Front Page (First Panel)', 'marsxi' );
     
     /**
      * Reorganize some things in the Customizer
      */   
     $wp_customize->get_section( 'title_tagline' )->priority     = 10;
     $wp_customize->get_section( 'header_image' )->priority      = 11;
-    $wp_customize->get_section( 'static_front_page' )->priority = 12;
-    $wp_customize->get_section( 'theme_options' )->priority     = 13; 
+    $wp_customize->get_section( 'static_front_page' )->priority = 12; 
+    $wp_customize->get_section( 'theme_options' )->priority     = 13;
     $wp_customize->get_control( 'page_layout' )->priority       = 7;
     $wp_customize->get_control( 'blogname' )->priority          = 11;
     $wp_customize->get_control( 'blogdescription' )->priority   = 12;
+    $wp_customize->get_control( 'show_on_front' )->priority     = 8;
+    $wp_customize->get_control( 'page_for_posts' )->priority    = 9;
+    $wp_customize->get_control( 'page_on_front' )->priority     = 10;
     
     
     /**
@@ -77,32 +82,18 @@ function marsxi_customize_register( $wp_customize ) {
                     'priority'          => 10
                 ) );
         
+        /**
+         * Create Front Page Options Section
+         */
+//        $wp_customize->add_section( 'frontpage_options',
+//                array(
+//                    'title'             => __( 'Front Page Options', 'marsxi' ),
+//                    'priority'          => 14
+//                ) );
         
         /**
-         * Front Page Page Layout
+         * Front Page Options
          */
-        $wp_customize->add_setting( 'frontpage_page_layout',
-                array(
-                    'default'           => 'page-layout',
-                    'sanitize_callback' => 'marsxi_sanitize_front_page_layout',
-                    'transport'         => 'postMessage',
-                ) );
-        
-        $wp_customize->add_control( 'frontpage_page_layout',
-                array(
-                    'label'             => __( 'Front Page Page Layout', 'marsxi' ),
-                    'section'           => 'theme_options',
-                    'type'              => 'radio',
-                    'description'       => __( 'Keep the site\'s page layout (as above) or assign a different one separately just for the front page. (Scroll up to view.)', 'marsxi' ),
-                    'choices'           => array(
-                            // 'page-layout'   => __( 'Page Layout (same as above)', 'marsxi' ),
-                            'one-column'    => __( 'One Column', 'marsxi' ),
-                            'two-column'    => __( 'Two Column', 'marsxi' ),
-                    ),
-                    'active_callback'   => 'marsxi_is_static_front_page',
-                    'priority'          => 8
-                ) );
-        
         $wp_customize->add_setting( 'frontpage_full_main_image',
                 array(
                     'default'           => false,
@@ -111,13 +102,39 @@ function marsxi_customize_register( $wp_customize ) {
         
         $wp_customize->add_control( 'frontpage_full_main_image',
                 array(
-                    'section'           => 'theme_options',
+                    'section'           => 'static_front_page',
                     'type'              => 'checkbox',
-                    'label'             => __( 'Show Front Featured Image?', 'marsxi' ),
+                    'label'             => __( 'Show Front First Panel Featured Image?', 'marsxi' ),
                     'active_callback'   => 'marsxi_is_static_front_page',
-                    'priority'          => 8,
+                    'priority'          => 10,
                 ) );
         
+        /**
+         * Front Page Content Blocks
+         * @todo Come back and fix/add these in
+         */
+//        $num_f_pages_sections = 3;
+//        
+//        // Create a setting and control for each of the featured page sections available in the theme.
+//        for ( $i = 1; $i < ( 1 + $num_f_pages_sections ); $i++ ) {
+//                $wp_customize->add_setting( 'featured_page_' . $i,
+//                        array(
+//                            'default'           => false,
+//                            'sanitize_callback' => 'absint',
+//                        ) );
+//                
+//                $wp_customize->add_control( 'featured_page_' . $i, 
+//                        array(
+//                            /* Translators: %d is the Featured Page number. */
+//                            'label'             => sprintf( __( 'Featured Page %d.', 'marsxi' ), $i ),
+//                            'type'              => 'dropdown-pages',
+//                            'section'           => 'static_front_page',
+//                ) );
+//        }
+        
+        /**
+         * Slide Panel images? One or two columns?
+         */
         $wp_customize->add_setting( 'frontpage_slide_panel_images',
                 array(
                     'default'           => false,
@@ -126,13 +143,41 @@ function marsxi_customize_register( $wp_customize ) {
         
         $wp_customize->add_control( 'frontpage_slide_panel_images',
                 array(
-                    'section'           => 'theme_options',
+                    'section'           => 'static_front_page',
                     'type'              => 'checkbox',
                     'label'             => __( 'Make Front Panel Images slide in?', 'marsxi' ),
                     'active_callback'   => 'marsxi_is_static_front_page',
-                    'priority'          => 8,
+                    'priority'          => 10,
                 ) );
         
+        $wp_customize->add_setting( 'frontpage_slide_images_one_column',
+                array(
+                    'default'           => false,
+                    'sanitize_callback' => 'marsxi_sanitize_checkbox',
+                ) );
+        
+        $wp_customize->add_control( 'frontpage_slide_images_one_column',
+                array(
+                    'section'           => 'static_front_page',
+                    'type'              => 'checkbox',
+                    'label'             => __( 'Slide Images in One Column?', 'marsxi' ),
+                    'active_callback'   => 'marsxi_is_static_front_page',
+                    'priority'          => 10,
+                ) );
+                
+        /**
+         * Move Twenty Seventeen Front Panel Sections to Front Page Options
+         */
+        $num_sections = apply_filters( 'twentyseventeen_front_page_sections', 4 );
+        
+        for( $i = 1; $i < ( 1 + $num_sections ); $i++ ) {
+            $wp_customize->get_control( 'panel_' . $i )->section    = 'static_front_page';
+            $wp_customize->get_control( 'panel_' . $i )->priority   = 11;
+        }
+        
+        /**
+         * Show first/last panel title
+         */
         $wp_customize->add_setting( 'frontpage_show_title',
                 array(
                     'default'           => false,
@@ -141,11 +186,11 @@ function marsxi_customize_register( $wp_customize ) {
         
         $wp_customize->add_control( 'frontpage_show_title',
                 array(
-                    'section'           => 'theme_options',
+                    'section'           => 'static_front_page',
                     'type'              => 'checkbox',
-                    'label'             => __( 'Show Front First/Last Section title?', 'marsxi' ),
+                    'label'             => __( 'Show Front First & Last Panel title?', 'marsxi' ),
                     'active_callback'   => 'marsxi_is_static_front_page',
-                    'priority'          => 8,
+                    'priority'          => 10,
                 ) );
         
         
@@ -160,12 +205,13 @@ function marsxi_customize_register( $wp_customize ) {
         
         $wp_customize->add_control( 'panel_last',
                 array(
-                    'label'             => __( 'Front Page LAST Section Content', 'marsxi' ),
+                    'label'             => __( 'Front Page LAST Panel Content', 'marsxi' ),
                     'description'       => __( 'The LAST Front Page Section will obey the Front Page Page Layout rules so the top "section" (Front Page) and this last section match layouts.', 'marsxi' ),
-                    'section'           => 'theme_options',
+                    'section'           => 'static_front_page',
                     'type'              => 'dropdown-pages',
                     'allow_addition'    => true,
                     'active_callback'   => 'marsxi_is_static_front_page',
+                    'priority'          => 12,
                 ) );
         
         $wp_customize->selective_refresh->add_partial( 'panel_last', 
@@ -273,7 +319,7 @@ function marsxi_customize_register( $wp_customize ) {
         
         $wp_customize->add_setting( 'site_headline_description',
                 array(
-                    'default'           => __( 'Descriptive text for your Site Headline title.', 'marsxi' ),
+                    'default'           => __( 'Site Headline description', 'marsxi' ),
                     'sanitize_callback' => 'marsxi_sanitize_text',
                 ) );
         
@@ -308,6 +354,40 @@ function marsxi_customize_register( $wp_customize ) {
                     'priority'          => 9
                 ) );
         
+        /**
+         * Custom Footer Copyright Text
+         */
+        $wp_customize->add_setting( 'footer_text',
+                array(
+                    'default'           => '',
+                    'sanitize_callback' => 'marsxi_sanitize_text',
+                ) );
+        
+        $wp_customize->add_control( 'footer_text',
+                array(
+                    'type'              => 'text',
+                    'section'           => 'theme_options',
+                    'label'             => __( 'Custom Footer text', 'marsxi' ),
+                    'description'       => __( 'This text appears after the blog name in the copyright text in the footer.', 'marsxi' ),     
+                ) );
+        
+        /**
+         * Footer Credits
+         */
+        $wp_customize->add_setting( 'show_footer_credits',
+                array(
+                    'default'           => true,
+                    'sanitize_callback' => 'marsxi_sanitize_checkbox',
+                ) );
+        
+        $wp_customize->add_control( 'show_footer_credits',
+                array(
+                    'type'              => 'checkbox',
+                    'section'           => 'theme_options',
+                    'label'             => __( 'Show Footer Credits?', 'marsxi' ),
+                    ''
+                ) );
+        
         
         /**
          * Top Menu Position
@@ -330,6 +410,55 @@ function marsxi_customize_register( $wp_customize ) {
                     ),
                     'priority'          => 1,
                     'active_callback'   => 'marsxi_has_top_menu'
+                ) );
+        
+        
+                /**
+         * Front Page Page Layout
+         * 
+         * @deprecated 1.0.1 Possibly to revisit later
+         */
+//        $wp_customize->add_setting( 'frontpage_page_layout',
+//                array(
+//                    'default'           => 'page-layout',
+//                    'sanitize_callback' => 'marsxi_sanitize_front_page_layout',
+//                    'transport'         => 'postMessage',
+//                ) );
+//        
+//        $wp_customize->add_control( 'frontpage_page_layout',
+//                array(
+//                    'label'             => __( 'Front Page Page Layout', 'marsxi' ),
+//                    'section'           => 'frontpage_options',
+//                    'type'              => 'radio',
+//                    'description'       => __( 'Keep the site\'s page layout (as above) or assign a different one separately just for the front page. (Scroll up to view.)', 'marsxi' ),
+//                    'choices'           => array(
+//                            // 'page-layout'   => __( 'Page Layout (same as above)', 'marsxi' ),
+//                            'one-column'    => __( 'One Column', 'marsxi' ),
+//                            'two-column'    => __( 'Two Column', 'marsxi' ),
+//                    ),
+//                    'active_callback'   => 'marsxi_is_static_front_page',
+//                    'priority'          => 8
+//                ) );
+        
+        /**
+         * Login Section options
+         */
+        $wp_customize->add_section( 'login_options',
+                array(
+                    'title'             => __( 'Login Options', 'marsxi' ),
+                ) );
+        
+        $wp_customize->add_setting( 'show_login_button',
+                array(
+                    'default'           => true,
+                    'sanitize_callback' => 'marsxi_sanitize_checkbox',
+                ) );
+        
+        $wp_customize->add_control( 'show_login_button',
+                array(
+                    'type'              => 'checkbox',
+                    'section'           => 'login_options',
+                    'label'             => __( 'Show Login button in Top Menu?', 'marsxi' ),
                 ) );
 
 }

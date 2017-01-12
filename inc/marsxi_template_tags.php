@@ -23,7 +23,7 @@
         if ( $copyright_dates[0]->firstdate != $copyright_dates[0]->lastdate ) {
             $copyright .= " &ndash; " . $copyright_dates[0]->lastdate;
         }
-        $output = $copyright . " " . $blog_name;
+        $output = $copyright . " " . $blog_name . get_theme_mod( 'footer_text' );
     }
     echo $output;
 }
