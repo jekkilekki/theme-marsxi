@@ -28,7 +28,7 @@
 
 	<header id="masthead" class="site-header" role="banner">
             
-                <?php get_template_part( 'template-parts/header/header', 'image' ); ?>
+                <?php if ( ! get_theme_mod( 'header_textcolor' ) ) { get_template_part( 'template-parts/header/header', 'image' ); } ?>
 
 		<?php if ( has_nav_menu( 'top' ) ) : ?>
 			<div class="navigation-top <?php echo get_theme_mod( 'logo_position_options', 'header' ) == 'top-menu' ? 'menu-logo': ''; ?>">
@@ -51,7 +51,7 @@
         /**
          * ALL Page Headline -> Front Page ONLY option in front-page.php
          */
-        if ( get_theme_mod( 'site_headline', '' ) != '' && get_theme_mod( 'site_headline_options', 'all-pages' ) != 'front-page' ) : ?>
+        if ( get_theme_mod( 'site_headline', '' ) != '' && get_theme_mod( 'site_headline_options', 'all-pages' ) != 'front-page' && has_header_image() ) : ?>
         <div class="panel-content site-headline-panel <?php echo get_theme_mod( 'page_layout' ) == 'one-column' ? 'page-one-column' : ''; ?>">
             <div class="wrap">
                 <header class="entry-header">
@@ -71,6 +71,23 @@
 		the_post_thumbnail( 'twentyseventeen-featured-image' );
 		echo '</div><!-- .single-featured-image-header -->';
 	endif;
+        
+        /**
+         * ALL Page Headline -> If there's no header image, show the Featured Image first, above this headline
+         */
+        if ( get_theme_mod( 'site_headline', '' ) != '' && get_theme_mod( 'site_headline_options', 'all-pages' ) != 'front-page' && ! has_header_image() ) : ?>
+        <div class="panel-content site-headline-panel <?php echo get_theme_mod( 'page_layout' ) == 'one-column' ? 'page-one-column' : ''; ?>">
+            <div class="wrap">
+                <header class="entry-header">
+                    <h2 class="entry-title"><?php echo get_theme_mod( 'site_headline', '' ); ?></h1>
+                </header>
+                <div class="entry-content">
+                    <?php echo get_theme_mod( 'site_headline_description', '' ); ?>
+                </div>
+            </div>
+        </div>
+        <?php 
+        endif;
 	?>
 
 	<div class="site-content-contain">

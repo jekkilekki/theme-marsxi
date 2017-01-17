@@ -18,6 +18,7 @@ function marsxi_customize_register( $wp_customize ) {
     $wp_customize->get_section( 'static_front_page' )->title        = __( 'Static Front Page Options', 'marsxi' );
     $wp_customize->get_control( 'header_textcolor' )->description   = __( 'This also controls the color of your Call to Action headline.', 'marsxi' );
     $wp_customize->get_control( 'page_on_front' )->label            = __( 'Front Page (First Panel)', 'marsxi' );
+    $wp_customize->get_setting( 'header_textcolor' )->transport     = 'refresh';
     
     /**
      * Reorganize some things in the Customizer

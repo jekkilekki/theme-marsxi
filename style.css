@@ -5,7 +5,7 @@
  * Author:          Aaron Snowberger
  * Author URI:      http://aaronsnowberger.com
  * Template:        twentyseventeen
- * Version:         1.0.1
+ * Version:         1.0.2
  * License:         GPLv2 or later
  * License URL:     http://www.gnu.org/licenses/gpl-2.0.html
  * Tags:            responsive-layout
@@ -117,6 +117,12 @@ button a {
 .colors-dark .link-more:hover a {
     color: black!important;
 }
+.colors-dark .panel-content .continue-reading a {
+	box-shadow: none;
+}
+.colors-dark .entry-content a img {
+	box-shadow: 0 0 0 8px transparent;
+}
 /**
  * Custom gallery alignments ONLY for the first panel on the Front Page
  */
@@ -125,6 +131,15 @@ button a {
 }
 .twentyseventeen-front-page .site-main article:first-child .gallery-caption {
     text-align: center;
+}
+.twentyseventeen-front-page .gallery-caption {
+    padding-right: 3em;
+}
+.gallery-caption {
+    font-style: normal;
+}
+.colors-dark .gallery-caption {
+	color: #ddd;
 }
 
 /**
@@ -184,6 +199,9 @@ button a {
         padding-left: 1em;
     }
 }
+.menu-main-menu-container {
+    transform: translateX(12%);
+}
 
 /**
  * Sliding Image Panels
@@ -238,6 +256,9 @@ button a {
     font-weight: 800;
     letter-spacing: 0.14em;
     text-transform: uppercase;
+}
+.colors-dark .site-headline-panel .entry-title {
+    color: #ddd;
 }
 .site-headline-panel .entry-content {
     font-size: 1rem;
@@ -329,6 +350,9 @@ article.page-two-column .entry-content {
         margin-bottom: 1em;
     }
 }
+.last-panel .wrap, .first-panel .wrap {
+    max-width: 920px!important;
+}
 
 /**
  * Paging Navigation
@@ -384,10 +408,10 @@ article.page-two-column .entry-content {
     padding-bottom:0.5em;
 }
 .social-navigation {
-    margin-top: 0.5em;
+    
 }
 .site-info {
-    font-size: 1rem;
+    font-size: 0.875rem;
     text-transform: uppercase;
     color: rgba(0,0,0,0.4);
 }
@@ -400,6 +424,16 @@ article.page-two-column .entry-content {
 }
 .theme-info a {
     color: rgba(0,0,0,0.4);
+}
+.colors-dark .site-info {
+    color: gray;
+}
+.colors-dark .theme-info {
+    background: black;
+    color: rgba( 255,255,255,0.3 );
+}
+.colors-dark .theme-info a {
+    color: rgba( 255,255,255,0.4 );
 }
 
 /**
@@ -419,4 +453,16 @@ article.page-two-column .entry-content {
     background: #767676;
     color: white;
     border-color: #767676;
+}
+.colors-dark .login-link {
+    background: #222;
+}
+@media screen and (max-width: 48em) {
+    .login-link {
+	color: white;
+	position: fixed;
+	font-size: 0.75em;
+	right: 2em;
+	background: #eaeded;
+    }
 }
