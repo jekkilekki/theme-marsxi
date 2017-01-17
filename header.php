@@ -28,7 +28,7 @@
 
 	<header id="masthead" class="site-header" role="banner">
             
-                <?php if ( ! get_theme_mod( 'header_textcolor' ) ) { get_template_part( 'template-parts/header/header', 'image' ); } ?>
+                <?php if ( ! get_theme_mod( 'header_textcolor' ) || is_front_page() ) { get_template_part( 'template-parts/header/header', 'image' ); } ?>
 
 		<?php if ( has_nav_menu( 'top' ) ) : ?>
 			<div class="navigation-top <?php echo get_theme_mod( 'logo_position_options', 'header' ) == 'top-menu' ? 'menu-logo': ''; ?>">
